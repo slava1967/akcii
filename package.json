@@ -20,6 +20,15 @@
   },
   "devDependencies": {
     "@aceforth/nuxt-optimized-images": "^1.4.0",
-    "nodemon": "^2.0.7"
+    "imagemin-gifsicle": "^7.0.0",
+    "imagemin-mozjpeg": "^9.0.0",
+    "imagemin-pngquant": "^9.0.1",
+    "imagemin-svgo": "^8.0.0",
+    "lqip-loader": "^2.2.1",
+    "nodemon": "^2.0.7",
+    "responsive-loader": "^2.3.0",
+    "sharp": "^0.27.0",
+    "sqip-loader": "^1.0.0",
+    "webp-loader": "^0.6.0"
   }
 }

@@ -25,7 +25,7 @@ section.masthead {
   display: block;
   justify-content: center;
   align-items: center;
-  padding: 35vw 7vw 7vw 7vw;
+  padding: 15vw 7vw 7vw 7vw;
   background: 
   linear-gradient(
       rgba(0, 0, 0, 0.5), 
