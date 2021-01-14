@@ -1,19 +1,29 @@
 <template>
   <div>
-    <AppNav />
+    <TheHeader @sidenavToggle="displaySidenav = !displaySidenav" />
+    <TheSidenav
+    :show="displaySidenav"
+    @close="displaySidenav = false" />
     <nuxt />
     <TheFooter />
   </div>
 </template>
 
 <script>
-import AppNav from '~/components/AppNav'
+import TheHeader from '~/components/Navigation/TheHeader'
+import TheSidenav from "~/components/Navigation/TheSidenav"
 import TheFooter from '~/components/TheFooter'
 
 export default {
   components: {
-    AppNav,
+    TheHeader,
+    TheSidenav,
     TheFooter
+  },
+  data() {
+    return {
+      displaySidenav: false
+    }
   }
 }
 </script>

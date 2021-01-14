@@ -1,6 +1,9 @@
 <template>
 <div>
-  <AppNav />
+  <TheHeader @sidenavToggle="displaySidenav = !displaySidenav" />
+  <TheSidenav
+    :show="displaySidenav"
+    @close="displaySidenav = false" />
   <div class="page">
     <main>
       <nuxt />
@@ -14,15 +17,22 @@
 </template>
 
 <script>
-import AppNav from '~/components/AppNav'
+import TheHeader from '~/components/Navigation/TheHeader'
+import TheSidenav from "~/components/Navigation/TheSidenav"
 import TheFooter from '~/components/TheFooter'
 import TheSideBar from '~/components/TheSideBar'
 
 export default {
   components: {
-    AppNav,
+    TheHeader,
+    TheSidenav,
     TheFooter,
     TheSideBar
+  },
+  data() {
+    return {
+      displaySidenav: false
+    }
   }
 }
 </script>
