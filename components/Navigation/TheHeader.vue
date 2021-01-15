@@ -11,6 +11,11 @@
     <div class="navigation-items">
       <ul class="nav-list">
         <li class="nav-item"><nuxt-link exact to="/">Главная</nuxt-link></li>
+        <li class="dropdown"><nuxt-link to="#" class="dropbtn">Категории</nuxt-link>
+          <div class="dropdown-content">
+            <Categories />
+          </div>
+        </li>
         <li class="nav-item"><nuxt-link to="/about">About</nuxt-link></li>
       </ul>
     </div>
@@ -19,13 +24,19 @@
 </template>
 
 <script>
-import TheSideNavToggle from "~/components/Navigation/TheSideNavToggle";
+import { mapGetters } from 'vuex'
+import TheSideNavToggle from "~/components/Navigation/TheSideNavToggle"
+import Categories from '~/components/Categories'
 
 export default {
   name: "TheHeader",
   components: {
-    TheSideNavToggle
-  }
+    TheSideNavToggle,
+    Categories
+  },
+  computed: mapGetters({
+    categories: 'categories/get'
+  })
 };
 </script>
 
@@ -93,4 +104,46 @@ export default {
 .nav-item a.nuxt-link-active {
   color: red;
 }
+
+li {
+  float: left;
+}
+
+li a, .dropbtn {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li.dropdown {
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1;}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.dropdown:hover dropdown:focus .dropdown-content {
+  display: block;
+}
+
 </style>

@@ -41,8 +41,7 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/style-resources',
-    'nuxt-vue-select'
+    '@nuxtjs/style-resources'
   ],
   styleResources: {
     scss: [

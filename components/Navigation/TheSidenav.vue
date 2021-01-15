@@ -11,9 +11,17 @@
       <ul
         class="nav-list"
         @click="$emit('close')">
-        <li class="nav-item"><nuxt-link exact to="/">Главная</nuxt-link></li>
+        <li class="nav-item"><nuxt-link exact to="/">Главная</nuxt-link></li>  
+        <li class="nav-item"><nuxt-link to="#">Категории</nuxt-link>
+          <ul>
+            <li class="nav-item" v-for="category in categories" :key="category.id">
+              <nuxt-link class="nav-item" :to="{ name: 'category-slug', params: { slug: category.slug }}">
+                {{ category.name }}
+              </nuxt-link>
+            </li>
+          </ul>
+        </li>
         <li class="nav-item"><nuxt-link to="/about">About</nuxt-link></li>
-        <li class="nav-item"><nuxt-link to="/admin">Admin</nuxt-link></li>
       </ul>
     </div>
   </transition>
@@ -21,6 +29,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: "TheSidenav",
   props: {
@@ -28,7 +38,10 @@ export default {
       type: Boolean,
       default: false
     }
-  }
+  },
+  computed: mapGetters({
+    categories: 'categories/get'
+  })
 };
 </script>
 
@@ -50,7 +63,6 @@ export default {
 }
 
 .sidenav {
-  height: 100%;
   width: 300px;
   background-color: white;
   z-index: 10000;
@@ -59,6 +71,7 @@ export default {
   left: 0;
   box-sizing: border-box;
   padding: 30px;
+  margin-top: 30px;
 }
 
 .slide-side-enter-active,
@@ -83,7 +96,7 @@ export default {
 .nav-item a {
   text-decoration: none;
   color: black;
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 
 .nav-item a:hover,
