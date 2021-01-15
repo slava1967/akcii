@@ -28,7 +28,7 @@ export default {
   
   head() {
     return {
-      title: `${this.category.name} + ':' + ' ' + ${this.post.title.rendered}`,
+      title: `${this.category.name}` + ':' + ' ' + `${this.post.title.rendered}`,
       bodyAttrs: {
         class: `single single-${this.post.type} single-format-${this.post.format} postid-${this.post.id} ${this.post.slug}`
       },
