@@ -25,27 +25,16 @@ export default {
       postError: error
     })
   },
+  
   head() {
     return {
-      title: this.post._yoast_wpseo_title,
+      title: `${this.post.title.rendered}`,
+      bodyAttrs: {
+        class: `single single-${this.post.type} single-format-${this.post.format} postid-${this.post.id} ${this.post.slug}`
+      },
       meta: [
-        { hid: 'description', id: 'description', name: 'description', content: this.post._yoast_wpseo_metadesc }
+        { hid: 'description', name: 'description', content: `${this.post.content.rendered}` }
       ]
-    }
-  },
-  asyncData ({ params }) {
-    return axios.get(`https:///wordpress.gintonic.cf/wp-json/wp/v2/posts/${params.id}`)
-      .then(response => {
-        return { post: response.data }
-      })
-      .catch((error) => {
-        return { error: error }
-      })
-  },
-  data () {
-    return {
-      post: {},
-      error: []
     }
   },
   name: "PostPage",
