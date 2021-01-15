@@ -28,14 +28,20 @@ export default {
   
   head() {
     return {
-      title: this.category.name `${this.post.title.rendered}`,
-      bodyAttrs: {
-        class: `single single-${this.post.type} single-format-${this.post.format} postid-${this.post.id} ${this.post.slug}`
-      },
+      title: this.post.yoast_title,
       meta: [
-        { hid: 'description', name: 'description', content: `${this.post.content.rendered}` }
+        { hid: 'description', id: 'description', name: 'description', content: this.post.yoast_meta.description }
       ]
     }
+  },
+  asyncData ({ params }) {
+    return axios.get(`https://wordpress.gintonic.c/wp-json/wp/v2/posts/${params.id}`)
+      .then(response => {
+        return { post: response.data }
+      })
+      .catch((error) => {
+        return { error: error }
+      })
   },
   name: "PostPage",
   components: {
