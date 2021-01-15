@@ -10,7 +10,7 @@
           </nuxt-link>
         </div>
       </div>
-      <div class="article__body" v-html="post['content'].rendered"></div>
+      <div class="article__body" v-html="post.content.rendered"></div>
     </article>
   </div>
 </template>
@@ -27,13 +27,25 @@ export default {
   },
   head() {
     return {
-      title: `${this.post.title.rendered}`,
-      bodyAttrs: {
-        class: `single single-${this.post.type} single-format-${this.post.format} postid-${this.post.id} ${this.post.slug}`
-      },
+      title: this.post._yoast_wpseo_title,
       meta: [
-        { hid: 'description', name: 'description', content: '' }
+        { hid: 'description', id: 'description', name: 'description', content: this.post._yoast_wpseo_metadesc }
       ]
+    }
+  },
+  asyncData ({ params }) {
+    return axios.get(`https:///wordpress.gintonic.cf/wp-json/wp/v2/posts/${params.id}`)
+      .then(response => {
+        return { post: response.data }
+      })
+      .catch((error) => {
+        return { error: error }
+      })
+  },
+  data () {
+    return {
+      post: {},
+      error: []
     }
   },
   name: "PostPage",
