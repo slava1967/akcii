@@ -30,5 +30,8 @@ export const getters = {
   },
   getTitle: (state) => (slugName) => {
     return state.items.filter(item => item.slug === slugName)[0].name
+  },
+  getDescription: (state) => (slugName) => {
+    return state.items.filter(item => item.slug === slugName)[0].description
   }
 }

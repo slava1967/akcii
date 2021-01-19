@@ -2,6 +2,7 @@
   <div class="container">
 
     <h1>{{ this.categoryTitle }}</h1>
+    <p>{{ this.categoryDescription }}</p>
 
     <Pagination
       :routeRootName="'category-slug'"
@@ -17,7 +18,7 @@
 
       </li>
     </ul>
-    <div v-else>no posts</div>
+    <div v-else>В этой категории пока ещё нет объявлений.</div>
 
   </div>
 </template>
@@ -78,6 +79,9 @@ export default {
     },
     categoryTitle() {
       return this.$store.getters['categories/getTitle']((this.pageSlug))
+    },
+    categoryDescription() {
+      return this.$store.getters['categories/getDescription']((this.pageSlug))
     }
   }
 }
