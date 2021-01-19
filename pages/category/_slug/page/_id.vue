@@ -50,7 +50,7 @@ export default {
   },
   head() {
     return {
-      title: this.categoryTitle,
+      title:  this.categoryTitle,
       titleTemplate: null,
       bodyAttrs: {
         class: `archive category category-${this.caregoryId} paged paged-${this.$route.params.id} category-${this.pageSlug} category-paged-${this.$route.params.id}`

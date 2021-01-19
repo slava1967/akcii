@@ -43,7 +43,7 @@ export default {
   },
   head() {
     return {
-      title: this.categoryTitle,
+      title: `Акции в категории ${this.categoryTitle}`,
       titleTemplate: null,
       bodyAttrs: {
         class: `archive category category-${this.caregoryId} category-${this.pageSlug}`

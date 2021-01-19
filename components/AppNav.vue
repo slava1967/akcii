@@ -2,7 +2,7 @@
   <div>
   <b-navbar toggleable="lg" type="light" variant="light">
     <b-navbar-brand to="/">
-      <img src="/logo-70.png" alt="Лого">
+      <img src="/logo-70.png" width="137" height="70" title="Распродажа товаров" alt="Лого">
     </b-navbar-brand>
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
