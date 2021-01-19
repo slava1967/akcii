@@ -50,7 +50,7 @@ export default {
         class: `archive category category-${this.caregoryId} category-${this.pageSlug}`
       },
       meta: [
-        { hid: 'description', name: 'description', content: '' }
+        { hid: 'description', name: 'description', content: `${this.categoryDescription}` }
       ]
     }
   },
