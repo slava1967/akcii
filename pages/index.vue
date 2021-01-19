@@ -56,13 +56,13 @@ export default {
   },
   head() {
     return {
-      title: '',
+      title: 'Товары по акции, сайт о распродажах',
       titleTemplate: null,
       bodyAttrs: {
         class: 'home blog'
       },
       meta: [
-        { hid: 'description', name: 'description', content: '' }
+        { hid: 'description', name: 'description', content: 'Купить необходимые товары по акции или заплатить за первое попавшееся предложение? Каждый из нас периодически сталкивается с необходимостью купить какой-то товар, который не относится к категории товаров первой необходимости. И часто это не самые дешевые товары.' }
       ]
     }
   },

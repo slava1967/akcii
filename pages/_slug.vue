@@ -17,7 +17,6 @@
 
 <script>
 import Badge from "~/components/Badge"
-import axios from 'axios'
 
 export default {
   async asyncData( { store, params, route, error } ) {
@@ -25,26 +24,21 @@ export default {
       postSlug: route.params.slug,
       postError: error
     })
-     return axios.get(`https://wordpress.gintonic.cf/wp-json/wp/v2/posts/${params.id}`)
-      .then(response => {
-        return { post: response.data }
-      })
-      .catch((error) => {
-        return { error: error }
-      })
   },
   head() {
     return {
-      title: this.post.yoast_title,
+      title: `Акция - ${this.post.title.rendered}`,
+      bodyAttrs: {
+        class: `single single-${this.post.type} single-format-${this.post.format} postid-${this.post.id} ${this.post.slug}`
+      },
       meta: [
-        { hid: 'description', name: 'description', content: this.post.yoast_meta.description }
+        { hid: 'description', name: 'description', content: `${this.post.content.rendered}` }
       ]
     }
   },
   name: "PostPage",
   components: {
-    Badge,
-    axios
+    Badge
   },
   computed: {
     post() {
