@@ -44,7 +44,7 @@ html {
 }
 
 body {
-  background-color: #ececec;
+  background-color: #f8f8f8;
 }
 
 h1,

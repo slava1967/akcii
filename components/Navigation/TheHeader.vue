@@ -16,6 +16,7 @@
             <Categories />
           </div>
         </li>
+        <li class="nav-item"><nuxt-link to="/contact">Контакты</nuxt-link></li>
         <li class="nav-item"><nuxt-link to="/about">About</nuxt-link></li>
       </ul>
     </div>

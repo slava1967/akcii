@@ -1,5 +1,7 @@
 const baseUrl = 'https://wordpress.gintonic.cf/wp-json/wp/v2/'
 
+require('dotenv').config()
+
 export default {
   // Target (https://go.nuxtjs.dev/config-target)
   target: 'static',
@@ -41,8 +43,14 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/dotenv',
     '@nuxtjs/style-resources'
   ],
+  env: {
+    WP_REST_API_BASE_URL: process.env.WP_REST_API_BASE_URL,
+    WPUSER: process.env.WPUSER,
+    APPLICATION_PASSWORD: process.env.APPLICATION_PASSWORD
+  },
   styleResources: {
     scss: [
       '~/assets/scss/_colors.scss'
@@ -50,7 +58,7 @@ export default {
    },
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
-    baseURL: baseUrl,
+    baseURL: process.env.WP_REST_API_BASE_URL,
     https: true
   },
 

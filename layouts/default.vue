@@ -40,7 +40,7 @@ export default {
 <style>
 body {
   height: 100vh;
-  background-color: #ffffff;
+  background-color: #f8f8f8;
 }
 .page {
   display: block;
@@ -50,8 +50,6 @@ aside {
   padding: .5em;
   margin-top: 5em;
   margin-bottom: 1em;
-  border-left: solid 2px #d6d6d6;
-  background: whitesmoke;
   height: 100vh;
 }
 html {

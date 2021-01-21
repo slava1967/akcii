@@ -21,6 +21,7 @@
           </b-dropdown-item>
         </b-nav-item-dropdown>
         <b-nav-item href="https://wordpress.gintonic.cf/svyazatsya-s-nami/" target=”_blank”>Связаться с нами</b-nav-item>
+        <b-navbar-item to="/contact">Контакт</b-navbar-item>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
