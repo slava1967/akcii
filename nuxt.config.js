@@ -1,3 +1,4 @@
+const axios = require('axios')
 const baseUrl = 'https://wordpress.gintonic.cf/wp-json/wp/v2/'
 require('dotenv').config()
 
