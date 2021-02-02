@@ -32,43 +32,8 @@ export default {
 .home {
   display: block;
 }
-html {
-  font-family: "Open Sans", sans-serif;
-  font-size: 18px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-}
 
-body {
-  background-color: #f8f8f8;
-}
 
-h1,
-h2,
-h3 {
-  font-family: "Alata", serif;
-  font-weight: normal;
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-  margin: 0;
-}
-
-.individual h3 {
-  margin: 2em 0 25px;
-}
-
-h1 {
-  margin-bottom: 30px;
-  text-align: center;
-}
 
 img {
   width: 100%;
@@ -77,10 +42,6 @@ img {
 video {
   width: 100%;
   margin: 25px 0;
-}
-
-small {
-  color: #9d5615;
 }
 
 pre,

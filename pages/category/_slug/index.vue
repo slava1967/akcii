@@ -1,26 +1,28 @@
 <template>
-  <div class="container">
+  <main>
+    <div class="info">
+      <h1>{{ this.categoryTitle }}</h1>
+      <p>{{ this.categoryDescription }}</p>
+    </div>
+    <div class="container">
+      <Pagination
+        :routeRootName="'category-slug'"
+        :routeName="'category-slug-page-id'"
+        :routeSlug="this.pageSlug"
+        :pageNumber="1"
+        :totalPages="this.totalPages" />
 
-    <h1>{{ this.categoryTitle }}</h1>
-    <p>{{ this.categoryDescription }}</p>
+      <ul v-if="posts.length" class="grid-container">
+        <li v-for="post in posts" :key="post.id">
 
-    <Pagination
-      :routeRootName="'category-slug'"
-      :routeName="'category-slug-page-id'"
-      :routeSlug="this.pageSlug"
-      :pageNumber="1"
-      :totalPages="this.totalPages" />
+          <Post :post="post" />
 
-    <ul v-if="posts.length">
-      <li v-for="post in posts" :key="post.id">
+        </li>
+      </ul>
+      <div v-else>В этой категории пока ещё нет объявлений.</div>
 
-        <Post :post="post" />
-
-      </li>
-    </ul>
-    <div v-else>В этой категории пока ещё нет объявлений.</div>
-
-  </div>
+    </div>
+  </main>
 </template>
 
 <script>
@@ -87,17 +89,32 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
+main {
+  height: 100%;
+}
+.info {
+  padding: 0 2em;
+}
+.info p {
+  text-align: center;
+}
+.grid-container {
+  display: grid;
+  grid-gap: 10px ;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  margin-bottom: 5px;
+}
 .container {
-  height: 100vh;
   margin-bottom: .8em;
+  margin: 0 auto;
 }
 .container ul li {
   list-style-type: none;
   background: white;
   border-radius: 1em;
   padding: .2em .7em;
-  margin: .5em;
-  box-shadow: 15px 21px 40px 15px rgba(0,0,0,0.1);
+  margin: .5em auto;
+  box-shadow: 6px 8px 8px 8px rgba(0, 0, 0, 0.2);
 }
 </style>

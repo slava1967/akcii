@@ -1,20 +1,20 @@
 <template>
-  <div class="contact-form">
+  <div class="dobavit-form">
     <div class="form-content">
-      <label class="required">Имя</label>
-      <input class="form-control" v-model="contactData.yourName" type="text" name="yourName" required="required" autocomplete="name" @blur="touched.yourName = true" />
-      <div class="input-hint"><span class="error" v-show="touched.yourName &amp;&amp; !contactData.yourName">(Обязательное поле)</span></div>
+      <label class="required">Заголовок</label>
+      <input class="form-control" v-model="postData.yourSubject" type="text" name="yourSubject" required="required" @blur="touched.yourSubject = true" />
+      <div class="input-hint"><span class="error" v-show="touched.yourSubject &amp;&amp; !postData.yourSubject">(Обязательное поле)</span></div>
     </div>
     <div class="form-content">
-      <label class="required">E-mail</label>
-      <input class="form-control" v-model="contactData.yourEmail" type="text" name="yourEmail" required="required" autocomplete="email" @blur="touched.yourEmail = true" />
-      <div class="input-hint"> <span class="error" v-show="touched.yourEmail &amp;&amp; !contactData.yourEmail">(Обязательное поле)</span><span class="error" v-show="touched.yourEmail &amp;&amp; !validEmail(contactData.yourEmail)">Пожалуйста, укажите правильно Ваш E-mail</span></div>
+      <label class="required">Выберите категорию</label>
+      <select class="form-control" v-model="postData.menuCategory" name="menuCategory" required="required" @blur="touched.menuCategory = true">
+        <option v-for="category in categories" :key="category.id">
+            {{ category.name }}
+        </option>
+      </select>
     </div>
     <div class="form-content">
-      <label class="required">Тема</label>
-      <input class="form-control" v-model="contactData.subject" type="text" name="subject" /></div>
-    <div class="form-content">
-      <label class="required">Сообщение</label><textarea class="form-control" v-model="contactData.message" name="message" rows="8"></textarea></div>
+      <label class="required">Текст</label><textarea class="form-control" v-model="postData.yourMessage" name="yourMessage" required="required" @blur="touched.yourMessage = true" rows="8"></textarea></div>
     <button :disabled="hasError" @click="confirm">Проверить</button>
   </div>
 </template>
@@ -24,19 +24,17 @@ import _ from 'lodash'
 
 const initialState = () => {
   return {
-    contactData: {
-      yourName: '',
-      yourEmail: '',
-      subject: '',
-      message: ''
+    postData: {
+      yourSubject: '',
+      menuCategory: '',
+      yourMessage: ''
     },
     touched: {
-      yourName: false,
-      yourEmail: false,
     },
     valid: {
-      yourName: false,
-      yourEmail: false
+      yourSubject: false,
+      menuCategory: false,
+      yourMessage: false
     },
     isModal: false
   }
@@ -48,16 +46,14 @@ export default {
   },
   computed: {
     hasError() {
-      return !this.validateContact()
+      return !this.validatePost()
+    },
+    categories() {
+      return this.$store.getters['categories/get']
     }
   },
   methods: {
-    // バリデーション
-    validEmail(email) {
-      const RegExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-      return RegExp.test(email)
-    },
-    validateContact() {
+    validatePost() {
       // 入力をトライしたかどうか
       const array = _.map(this.touched, item => {
         return item
@@ -66,15 +62,20 @@ export default {
         return value === true
       })
 
-      if (this.contactData.yourName) {
-        this.valid.yourName = true
+      if (this.postData.yourSubject) {
+        this.valid.yourSubject = true
       } else {
-        this.valid.yourName = false
+        this.valid.yourSubject = false
       }
-      if (this.contactData.yourEmail) {
-        this.valid.yourEmail = true
+      if (this.postData.menuCategory) {
+        this.valid.menuCategory = true
       } else {
-        this.valid.yourEmail = false
+        this.valid.menuCategory = false
+      }
+      if (this.postData.yourMessage) {
+        this.valid.yourMessage = true
+      } else {
+        this.valid.yourMessage = false
       }
 
       // 入力されているかどうか
@@ -88,13 +89,13 @@ export default {
       return allTouched && allValid
     },
     // Vuexに保存
-    storeContact() {
-      const contact = this.contactData
-      this.$store.commit('setContactData', contact)
+    storePost() {
+      const post = this.postData
+      this.$store.commit('setPostData', post)
     },
     // 確認ページ
     confirm() {
-      this.storeContact()
+      this.storePost()
       this.open()
     },
     // モーダルを開く
@@ -115,7 +116,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.contact-form {
+.dobavit-form {
   max-width: 620px;
   margin: 3.5rem;
 }
@@ -136,12 +137,14 @@ label {
 }
 
 input,
-textarea {
+textarea,
+select {
   width: 100%;
   font-size: 16px;
   padding: 0.5em 0.75em;
   border-radius: 3px;
   border: 1px solid #aaa;
+  background-color: white;
 }
 
 .input-hint {

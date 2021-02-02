@@ -1,23 +1,23 @@
 <template>
-    <section class="l-section">
+  <section class="l-section">
     <div class="l-container">
-        <h1>Напишите нам</h1>
-        <contact-form ref="form" @open-modal="openModal()"></contact-form>
+        <h1>Добавить информацию о распродаже товаров по акции</h1>
+        <dobavit-form ref="form" @open-modal="openModal()"></dobavit-form>
         <transition name="modal" v-cloak>
-            <form-modal v-if="isModal" @close-modal="closeModal()" @clear-data="clear()" @submit="submit()" :data-response="responseData"></form-modal>
+            <form-modalcat v-if="isModal" @close-modal="closeModal()" @clear-data="clear()" @submit="submit()" :data-response="responseData"></form-modalcat>
         </transition>
     </div>
-</section>
+  </section>
 </template>
 
 <script>
-import ContactForm from "@/components/ContactForm"
-import FormModal from "@/components/FormModal"
+import DobavitForm from "~/components/DobavitForm"
+import FormModalcat from "~/components/FormModalcat"
 
 export default {
   components: {
-    ContactForm,
-    FormModal
+    DobavitForm,
+    FormModalcat
   },
   data() {
     return {
@@ -36,7 +36,7 @@ export default {
       this.$refs.form.reset()
     },
     submit() {
-      const contactData = this.convertJsontoUrlencoded(this.$store.state.contactData)
+      const postData = this.convertJsontoUrlencoded(this.$store.state.postData)
       const USER = process.env.WPUSER
       const PASSWORD = process.env.PASSWORD
       // Base64に変換
@@ -49,8 +49,8 @@ export default {
       }
       this.$axios
         .post(
-          `${process.env.WP_REST_API_BASE_URL}/contact-form-7/v1/contact-forms/214/feedback/`,
-          contactData,
+          `${process.env.WP_REST_API_BASE_URL}/contact-form-7/v1/contact-forms/253/feedback/`,
+          postData,
           axiosConfig
         )
         .then(response => {

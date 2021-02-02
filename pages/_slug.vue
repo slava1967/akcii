@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h1 class="article--title" v-html="post.title.rendered" :id="`post-detail-id-${post.id}`"></h1>
+    <h1 v-html="post.title.rendered" :id="`post-detail-id-${post.id}`"></h1>
     <article :aria-labelledby="`post-detail-id-${post.id}`" class="article">
       <div class="article__info">
-        <time class="article__info--date" :datetime="post.date">{{post.date}}</time>
+        <time class="article__info--date" :datetime="post.date">{{ post.date | dateformat }}</time>
         <div class="article__info--category" v-for="category in postInCategory" :key="category.id">
           <nuxt-link :to="{ name: 'category-slug', params: { slug: category.slug }}">
             {{ category.name }}
@@ -67,8 +67,6 @@ export default {
     margin-bottom: .25em;
     letter-spacing: -.03em;
     line-height: 1.15;
-    font-weight: var(--font-weight-bolder);
-    color: var(--font-title-color);
 
     font-size: 2rem;
     @media (min-width: 768px) {
@@ -100,8 +98,10 @@ export default {
       left: 1rem;
       top: 1rem;
     }
-  }
-
-  
+  }  
 }
+
+h1 {
+  padding: .5em;
+  }
 </style>

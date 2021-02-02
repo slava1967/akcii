@@ -20,16 +20,8 @@ export default {
 
 <style lang="scss" scoped>
 
-.menu {
-  list-style-type: none;
-  a {
-    text-decoration: none;
-    color: black;
-  }
-  li :hover {
-    background: rgb(48, 47, 47);
-    color: white;
-  } 
+h3 {
+  padding: 1em .5em;
+  background-color: lightgray;
 }
-
 </style>

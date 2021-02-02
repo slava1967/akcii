@@ -4,12 +4,13 @@
       <main>
         <article class="post" :aria-labelledby="`post-id-${post.id}`">
           <div>
-          <h2 :id="`post-id-${post.id}`">
-            <nuxt-link :to="`/${post.slug}`" class="post-title">{{ post.title.rendered }}</nuxt-link>
-          </h2>
+            <nuxt-link :to="`/${post.slug}`" class="post-title">
+              <h2 v-html="post.title.rendered"></h2>
+            </nuxt-link>
           </div>
+          <time :datetime="post.date">{{ post.date | dateformat }}</time>
           <div v-html="post.excerpt.rendered"></div>
-          <nuxt-link :to="`/${post.slug}`" class="readmore slide">Read more ⟶</nuxt-link>
+          <nuxt-link :to="`/${post.slug}`" class="readmore slide">Читать дальше ⟶</nuxt-link>
         </article>
       </main>
     </div>
@@ -17,16 +18,16 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
   export default {
     name: "Post",
     props: {
       post: Object
     },
-    computed: {
-      postInCategory() {
-      return this.post['_embedded']['wp:term'][0]
-    }
-    }
+    computed: mapGetters({
+      posts: 'posts/all/getPost'
+    })
   }
 </script>
 
@@ -46,7 +47,6 @@ letter-spacing: 2px;
 position: relative;
 color: #000;
 font-weight: 700;
-font-family: "Open Sans", serif;
 border: 1px solid #ccc;
 background: #fff;
 }
@@ -87,7 +87,6 @@ h2 {
   font-size: 18px;
 }
 .post-title {
-  color: black;
   text-decoration: none;
   list-style-type: none;
 }

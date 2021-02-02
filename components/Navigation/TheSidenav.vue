@@ -12,16 +12,13 @@
         class="nav-list"
         @click="$emit('close')">
         <li class="nav-item"><nuxt-link exact to="/">Главная</nuxt-link></li>  
-        <li class="nav-item"><nuxt-link to="#">Категории</nuxt-link>
-          <ul>
-            <li class="nav-item" v-for="category in categories" :key="category.id">
-              <nuxt-link class="nav-item" :to="{ name: 'category-slug', params: { slug: category.slug }}">
-                {{ category.name }}
-              </nuxt-link>
-            </li>
-          </ul>
+        <li class="dropdown"><nuxt-link to="#" class="dropbtn">Категории</nuxt-link>
+          <div class="dropdown-content">
+            <Categories />
+          </div>
         </li>
-        <li class="nav-item"><nuxt-link to="/about">About</nuxt-link></li>
+        <li class="nav-item"><nuxt-link to="/contact">Контакты</nuxt-link></li>
+        <li class="nav-item"><nuxt-link to="/dobavit">Добавить</nuxt-link></li>
       </ul>
     </div>
   </transition>
@@ -30,9 +27,13 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import Categories from '~/components/Categories'
 
 export default {
   name: "TheSidenav",
+  components: {
+    Categories
+  },
   props: {
     show: {
       type: Boolean,

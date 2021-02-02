@@ -1,41 +1,51 @@
 export const state = () => ({
-  siteName: 'WP-NUXTJS'
+  siteName: 'Товары по акции',
+  contactData: {
+    yourName: null,
+    yourEmail: null,
+    subject: null,
+    message: null
+  },
+  postData: {
+    yourSubject: null,
+    menuCategory: null,
+    yourMessage: null
+  }
 })
+
+export const getters = {
+  getContactData: state => state.contactData,
+  getPostData: state =>state.postData
+}
 
 export const actions = {
   async nuxtServerInit ({ dispatch }) {
     await dispatch('categories/getCategories')
-  }
-}
-
-// # Modules Mode Vuex Store
-export default {
-  state: () => ({
-    formData: {
+  },
+  resetContact(context) {
+    const emptyContact = {
       yourName: null,
       yourEmail: null,
       subject: null,
       message: null
     }
-  }),
-  getters: {
-    getFormData: state => state.formData
+    context.commit('setContactData', emptyContact)
   },
-  mutations: {
-    setFormData(state, payload) {
-      state.formData = payload
+  resetCategory(context) {
+    const emptyPost = {
+      yourSubject: null,
+      menuCategory: null,
+      yourMessage: null
     }
-  },
-  actions: {
-    resetForm(context) {
-      const emptyForm = {
-        yourName: null,
-        yourEmail: null,
-        subject: null,
-        message: null
-      }
-      context.commit('setFormData', emptyForm)
-    }
+    context.commit('setPostData', emptyPost)
   }
 }
 
+export const mutations = {
+  setContactData(state, payload) {
+    state.contactData = payload
+  },
+  setPostData(state, payload) {
+    state.postData = payload
+  }
+}

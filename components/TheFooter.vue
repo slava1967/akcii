@@ -28,7 +28,7 @@ export default {
     margin: 0 auto;
 }
 #footer-bottom.no-footer-nav #copyright {
-    color: #7a7a7a;
+    color: #ecebeb;
     float: none;
     width: 100%;
     text-align: center;

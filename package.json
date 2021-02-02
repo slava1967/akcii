@@ -9,9 +9,9 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "@frontity/head-tags": "^1.0.8",
     "@nuxtjs/axios": "^5.12.2",
     "@nuxtjs/dotenv": "^1.4.1",
+    "@nuxtjs/sitemap": "^2.4.0",
     "@nuxtjs/style-resources": "^1.0.0",
     "core-js": "^3.8.2",
     "lodash": "^4.17.20",

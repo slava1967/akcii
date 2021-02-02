@@ -1,10 +1,10 @@
 <template>
   <div>
     <ul class="menu">
-        <li class="menu__item" v-for="category in categories" :key="category.id">
-          <n-link class="menu--link" :to="{ name: 'category-slug', params: { slug: category.slug }}">
+        <li v-for="category in categories" :key="category.id">
+          <nuxt-link class="menu--link" :to="{ name: 'category-slug', params: { slug: category.slug }}">
             {{ category.name }}
-          </n-link>
+          </nuxt-link>
         </li>
       </ul>
   </div>
@@ -22,5 +22,14 @@ import { mapGetters } from 'vuex'
 </script>
 
 <style lang="scss" scoped>
-
+ul {
+  padding: 1em .5em;
+}
+li {
+  list-style-type: none;
+  margin: 0 0 12px;  
+}
+a {
+  text-decoration: none;
+}
 </style>

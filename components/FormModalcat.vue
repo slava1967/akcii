@@ -1,25 +1,21 @@
 <template>
-    <div class="contact-confirm">
+    <div class="dobavit-confirm">
     <div class="overlay"></div>
     <slot>
         <div class="modal">
             <h2 :class="myStatus">{{ dataResponse ? dataResponse.message : 'Пожалуйста, проверьте содержание:' }}</h2>
             <div class="confirm" v-if="!dataResponse">
                 <dl>
-                    <dt>Имя</dt>
-                    <dd>{{ getContactData.yourName }}</dd>
+                    <dt>Заголовок</dt>
+                    <dd>{{ getPostData.yourSubject }}</dd>
                 </dl>
                 <dl>
-                    <dt>E-mail</dt>
-                    <dd>{{ getContactData.yourEmail }}</dd>
+                    <dt>Категория</dt>
+                    <dd>{{ getPostData.menuCategory }}</dd>
                 </dl>
                 <dl>
-                    <dt>Тема</dt>
-                    <dd>{{ getContactData.subject }}</dd>
-                </dl>
-                <dl>
-                    <dt>Сообщение</dt>
-                    <dd v-html="getContactData.message"></dd>
+                    <dt>Текст</dt>
+                    <dd v-html="getPostData.yourMessage"></dd>
                 </dl>
                 <div class="btn-submit" @click="send">Отправить</div>
                 <div class="btn-return" @click="close">Изменить</div>
@@ -53,11 +49,11 @@ export default {
         return ''
       }
     },
-    ...mapGetters(['getContactData'])
+    ...mapGetters(['getPostData'])
   },
   methods: {
     close() {
-      this.$store.dispatch('resetContact')
+      this.$store.dispatch('resetPost')
       this.$emit('close-modal')
     },
     clear() {
@@ -72,7 +68,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.contact-confirm {
+.dobavit-confirm {
   position: fixed;
   top: 0;
   left: 0;

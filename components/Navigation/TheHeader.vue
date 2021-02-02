@@ -17,7 +17,7 @@
           </div>
         </li>
         <li class="nav-item"><nuxt-link to="/contact">Контакты</nuxt-link></li>
-        <li class="nav-item"><nuxt-link to="/about">About</nuxt-link></li>
+        <li class="nav-item"><nuxt-link to="/dobavit">Добавить</nuxt-link></li>
       </ul>
     </div>
   </header>
@@ -49,8 +49,8 @@ export default {
 
 .the-header {
   width: 100%;
-  position: fixed;
-  height: 60px;
+  height: 80px;
+  position: sticky;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -126,9 +126,10 @@ li.dropdown {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
-  min-width: 160px;
+  min-width: 300px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
+  padding: 25px;
 }
 
 .dropdown-content a {
@@ -139,7 +140,10 @@ li.dropdown {
   text-align: left;
 }
 
-.dropdown-content a:hover {background-color: #f1f1f1;}
+.dropdown-content a:hover {
+  background-color: #000;
+  color: #fff;
+  }
 .dropdown:hover .dropdown-content {
   display: block;
 }

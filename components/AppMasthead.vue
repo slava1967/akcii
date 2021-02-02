@@ -18,7 +18,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/mixins.scss";
 section.masthead {
-  width: 100%;
+  width: 100vw;
   height: 90vh;
   overflow: hidden;
   text-align: center;
